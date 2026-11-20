@@ -1,0 +1,35 @@
+mode: review
+verbose: false                 # true -> also print the full design recommendation
+
+rla_amps: 180
+length_ft: 250
+voltage: 480
+configuration: 3ph_wye_4w
+continuous: true
+ambient_c: 30
+conductor_temp_c: 75
+material: Cu
+insulation: THWN-2
+conduit_type: EMT
+raceway_magnetic: magnetic
+power_factor: 0.9
+max_vdrop_pct: 3.0
+
+# Describe what is actually installed.  Any field you omit falls back to the
+# design recommendation, so partial reviews work.
+as_built:
+  phase_size: "3/0"
+  phase_sets: 1
+  neutral_size: "3/0"
+  egc_size: "6"
+  conduit_type: EMT
+  conduit_trade_size: "2"
+  conduit_count: 1
+  insulation: THWN-2
+  neutral_is_ccc: false  # Optional: replace conduit_count with an explicit per-raceway map.
+  # Roles: phase, neutral, egc.  Overrides conduit_count for the fill check.
+  # raceways:
+  #   - {phase: 1, egc: 1}
+  #   - {phase: 1, egc: 1}
+  #   - {phase: 1, egc: 1}
+  #   - {neutral: 1, egc: 1}

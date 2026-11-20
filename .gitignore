@@ -1,0 +1,17 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Generated run output (CSV traces are recreated on every run)
+output/
+
+# Old manual revision snapshots (git history replaces them)
+Wire_Size_Rev*.zip
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db

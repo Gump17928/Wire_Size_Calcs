@@ -1,0 +1,61 @@
+# mode: design                   # design | review
+# rla_amps: 180
+# length_ft: 250
+# voltage: 480
+# configuration: 3ph_wye_4w      # see calc/configurations.py for keys
+# continuous: true
+# ambient_c: 30
+# conductor_temp_c: 75           # termination rating per NEC 110.14(C)
+# material: Cu                   # Cu | Al
+# insulation: THWN-2             # must exist in nec_data/conductor_dims.py
+# conduit_type: EMT              # EMT | RMC | PVC-40 | PVC-80 (must exist in Table 4 data)
+# raceway_magnetic: magnetic     # magnetic (steel) | nonmagnetic (PVC / Al)
+# one_set_per_conduit: false     # true = each parallel set gets its own conduit
+# power_factor: 0.9              # AC only, for voltage drop
+# max_vdrop_pct: 3.0             # advisory (NEC informational note)
+
+# Optional: describe exactly what shares each raceway.  If present, this
+# overrides one_set_per_conduit.  Each list item is one raceway.
+# Roles: phase, neutral, egc.  Counts are per raceway.
+# Example - everything in one raceway (default behavior):
+# raceways:
+#   - {phase: 3, neutral: 1, egc: 1}
+# Example - one phase per conduit + separate N and EGC pipes (5 pipes total):
+# raceways:
+#   - {phase: 1, egc: 1}
+#   - {phase: 1, egc: 1}
+#   - {phase: 1, egc: 1}
+#   - {neutral: 1, egc: 1}
+# NOTE: separating phases into individual ferromagnetic raceways is a
+# NEC 300.3(B) / 300.20 issue for AC - use nonmagnetic conduit if you do this.
+
+
+# Another example that could be used specifically for a review scenario
+mode: review
+rla_amps: 140
+length_ft: 285
+voltage: 480
+configuration: 3ph_wye_4w
+continuous: true
+ambient_c: 30
+conductor_temp_c: 75
+material: Cu
+insulation: THWN-2
+conduit_type: PVC-40
+raceway_magnetic: magnetic
+power_factor: 0.9
+max_vdrop_pct: 3.0
+neutral_is_ccc: false
+output_csv: false
+
+raceways:
+  - {phase: 3, egc: 1}
+
+as_built:
+  phase_size: "2/0"
+  phase_sets: 1
+  egc_size: "6"
+  conduit_type: PVC-40
+  conduit_trade_size: "2-1/2"
+  conduit_count: 1
+
